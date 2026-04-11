@@ -66,28 +66,6 @@ internet-baby-club/
 | Prototipação | Figma |
 | Gestão do projeto | Project Libre |
 
-### Como funciona
-
-1. O site é hospedado na **Vercel** via integração com o repositório GitHub
-2. Ao enviar o formulário de contato, a requisição vai para a função serverless `api/contact.js`
-3. A função usa variáveis de ambiente (configuradas na Vercel) para acessar o **Firebase**
-4. Os dados do contato são gravados no **Firestore**
-5. Atualizações no GitHub fazem deploy automático na Vercel
-
----
-
-## Identidade Visual
-
-| Elemento | Definição |
-|---|---|
-| **Cor principal** | `#70B8E0` — azul |
-| **Cor secundária** | `#794199` — roxo |
-| **Cor de destaque** | `#95CEA5` — verde |
-| **Fundo** | `#FCFCED` — creme |
-| **Tipografia** | Matangi |
-| **Estética** | Y2K — nostálgica e moderna  |
-
----
 
 ## Cronograma (Project Libre)
 
@@ -112,7 +90,7 @@ internet-baby-club/
 - [x] Repositório GitHub criado e configurado
 - [x] Firebase configurado
 - [x] Função serverless `api/contact.js` criada
-- [x] Formulário de contato em HTML
+- [ ] Formulário de contato em HTML
 - [x] Página inicial (`index.html`) com design Y2K aplicado
 - [x] CSS separado em arquivo próprio (`style.css`)
 - [ ] Wireframe no Figma (em andamento)
