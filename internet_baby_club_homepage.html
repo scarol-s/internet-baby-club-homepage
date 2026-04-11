@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+<html>
+<style>
+ @font-face {
+  font-family: 'Matangi';
+  src: url('fonts/Matangi.ttf') format('truetype');
+}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue: #70B8E0;
+    --purple: #70B8E0;
+    --green: #95CEA5;
+    --cream: #FCFCED;
+    --dark: #2a1a35;
+    --blue-light: #c2e4f5;
+    --purple-light: #d4b0e8;
+    --green-light: #c8ecd3;
+  }
+
+  body {
+    background: var(--cream);
+    font-family: 'Matangi', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* MARQUEE TOP */
+  .marquee-bar {
+    background: var(--purple);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 18s linear infinite;
+  }
+  .marquee-inner span { margin: 0 24px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 25px;
+    background: var(--cream);
+    border-bottom: 2.5px solid var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-logo-text {
+    font-family: 'Matangi', cursive;
+    font-size: 22px;
+    color: var(--purple);
+    letter-spacing: .02em;
+  }
+  .mascote-nav {
+    width: 36px;
+    height: 36px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--dark);
+    transition: color .2s;
+    letter-spacing: .04em;
+  }
+  .nav-links a:hover { color: var(--purple); }
+  .nav-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn-cart {
+    background: var(--blue);
+    border: 2.5px solid var(--dark);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-weight: 800;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 3px 3px 0 var(--dark);
+    font-family: 'Matangi', sans-serif;
+  }
+  .btn-cart:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--dark); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+    border-bottom: 2.5px solid var(--dark);
+    overflow: hidden;
+  }
+  .hero-left {
+    padding: 24px 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    border-right: 2.5px solid var(--dark);
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green);
+    border: 2px solid var(--dark);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    width: fit-content;
+    animation: wiggle 3s ease-in-out infinite;
+  }
+  @keyframes wiggle { 0%,100%{transform:rotate(-1deg)} 50%{transform:rotate(1.5deg)} }
+
+  .hero-title {
+    font-family: 'Matangi', cursive;
+    font-size: clamp(42px, 6vw, 60px);
+    line-height: 1.10;
+    color: var(--dark);
+    font-weight: 900;
+  }
+  .hero-title .highlight-blue { color: var(--blue); -webkit-text-stroke: 2px var(--dark); }
+  .hero-title .highlight-purple { color: var(--purple); }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #5a4a6a;
+    max-width: 380px;
+    font-weight: 400;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .btn-primary {
+    background: var(--purple);
+    color: white;
+    border: 2.5px solid var(--dark);
+    border-radius: 50px;
+    padding: 14px 32px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 4px 4px 0 var(--dark);
+    font-family: 'Matangi', sans-serif;
+  }
+  .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--dark);
+    border: 2.5px solid var(--dark);
+    border-radius: 50px;
+    padding: 14px 32px;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 4px 4px 0 var(--dark);
+    font-family: 'Matangi', sans-serif;
+  }
+  .btn-secondary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--dark); }
+
+  /* floating dots Y2K */
+  .dot-deco {
+    position: absolute;
+    border-radius: 50%;
+    opacity: .25;
+    animation: float 5s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  /* HERO RIGHT */
+  .hero-right {
+    background: var(--blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-mascotes {
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    animation: mascoteBounce 4s ease-in-out infinite;
+  }
+  @keyframes mascoteBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+  .mascote-hero {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(4px 6px 0 rgba(0,0,0,0.18));
+  }
+  .mascote-hero:nth-child(2) { width: 130px; height: 130px; animation-delay: .3s; }
+  .mascote-hero:nth-child(3) { animation-delay: .6s; }
+
+  .hero-right-label {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 2px solid var(--dark);
+    border-radius: 50px;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0 var(--dark);
+  }
+
+  /* bubbles deco */
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    border: 2.5px solid var(--dark);
+    opacity: .5;
+    animation: bubbleFloat 6s ease-in-out infinite;
+  }
+  @keyframes bubbleFloat { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-20px) rotate(8deg)} }
+
+  /* CATEGORIES */
+  .categories {
+    padding: 64px 40px;
+    border-bottom: 2.5px solid var(--dark);
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .section-title {
+    font-family: 'Matangi', cursive;
+    font-size: 32px;
+    color: var(--dark);
+  }
+  .section-line {
+    flex: 1;
+    height: 2.5px;
+    background: var(--dark);
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .cat-card {
+    border: 2.5px solid var(--dark);
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform .18s, box-shadow .18s;
+    box-shadow: 4px 4px 0 var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .cat-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--dark); }
+  .cat-card:nth-child(1) { background: var(--blue-light); }
+  .cat-card:nth-child(2) { background: var(--purple-light); }
+  .cat-card:nth-child(3) { background: var(--green-light); }
+  .cat-card:nth-child(4) { background: #ffd6e8; }
+  .cat-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .cat-name {
+    font-weight: 800;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .cat-count {
+    font-size: 12px;
+    color: #6b5c7a;
+    margin-top: 4px;
+  }
+
+  /* PRODUCTS */
+  .products {
+    padding: 64px 40px;
+    background: var(--cream);
+    border-bottom: 2.5px solid var(--dark);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .product-card {
+    border: 2.5px solid var(--dark);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .18s, box-shadow .18s;
+    box-shadow: 4px 4px 0 var(--dark);
+    background: white;
+  }
+  .product-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--dark); }
+  .product-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    border-bottom: 2.5px solid var(--dark);
+    position: relative;
+  }
+  .product-img:nth-child(1) { background: var(--blue-light); }
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--purple);
+    color: white;
+    border: 2px solid var(--dark);
+    border-radius: 50px;
+    padding: 3px 10px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .product-info { padding: 16px; }
+  .product-name {
+    font-weight: 800;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .product-price {
+    font-family: 'Matangi', cursive;
+    font-size: 20px;
+    color: var(--purple);
+  }
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px 16px;
+  }
+  .btn-add {
+    background: var(--green);
+    border: 2px solid var(--dark);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 var(--dark);
+    transition: transform .1s;
+    font-family: 'Matangi', sans-serif;
+  }
+  .btn-add:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--dark); }
+
+  /* BANNER Y2K */
+  .banner-y2k {
+    background: var(--purple);
+    border-bottom: 2.5px solid var(--dark);
+    padding: 56px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .banner-text h2 {
+    font-family: 'Matangi', cursive;
+    font-size: 42px;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .banner-text p { color: var(--purple-light); font-size: 15px; line-height: 1.6; }
+  .banner-mascotes {
+    display: flex;
+    justify-content: center;
+    gap: -10px;
+  }
+  .mascote-banner {
+    width: 80px;
+    filter: drop-shadow(3px 4px 0 rgba(0,0,0,0.3));
+    transition: transform .2s;
+  }
+  .mascote-banner:hover { transform: translateY(-8px) scale(1.1); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: white;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+  .footer-logo {
+    font-family: 'Matangi', cursive;
+    font-size: 24px;
+    color: var(--blue);
+    margin-bottom: 8px;
+  }
+  .footer-sub { font-size: 13px; color: #a89ab8; line-height: 1.6; }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--green);
+    margin-bottom: 12px;
+  }
+  .footer-col a {
+    display: block;
+    color: #c8b8d8;
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 6px;
+    transition: color .15s;
+  }
+  .footer-col a:hover { color: white; }
+  .footer-bottom {
+    background: var(--dark);
+    border-top: 1px solid #3a2a4a;
+    padding: 16px 40px;
+    text-align: center;
+    font-size: 11px;
+    color: #6a5a7a;
+  }
+
+  /* pixel deco corners */
+  .pixel-corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--dark);
+    border-radius: 2px;
+  }
+</style>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span> bem-vindos ao clube</span>
+    <span> internet baby club</span>
+    <span> feito de fãs para fãs</span>
+    <span> bem-vindos ao clube</span>
+    <span> internet baby club</span>
+    <span> feito de fãs para fãs</span>
+    <span> bem-vindos ao clube</span>
+    <span> internet baby club</span>
+    <span> feito de fãs para fãs</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+<div class="nav-logo">
+    <img src="assets/img/logo.png" alt="Internet Baby Club" height="65">
+</div>
+  <ul class="nav-links">
+    <li><a href="#">Início</a></li>
+    <li><a href="#">Lançamentos</a></li>
+    <li><a href="#">Produtos</a></li>
+    <li><a href="#">Artistas</a></li>
+    <li><a href="#">Lista de Desejos</a></li>
+    <li><a href="#">Sobre</a></li>
+    <li><a href="#">Contato</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-cart"> Carrinho (0)</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <!-- deco dots -->
+    <div class="dot-deco" style="width:60px;height:60px;background:#70B8E0;top:40px;right:60px;animation-delay:.5s"></div>
+    <div class="dot-deco" style="width:30px;height:30px;background:#794199;bottom:80px;left:30px;animation-delay:1s"></div>
+    <div class="dot-deco" style="width:20px;height:20px;background:#95CEA5;top:120px;right:120px;animation-delay:1.5s"></div>
+
+  
+    <h1 class="hero-title">
+      Bem-vindos ao<br>
+      <span class="highlight-purple">Internet Baby Club</span>
+    </h1>
+    <p class="hero-sub">Um espaçinho feito de fãs para fãs, porque ninguém entende um fã melhor do que outro fã.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Ver produtos →</button>
+      <button class="btn-secondary">Sobre a loja</button>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- bubbles -->
+    <div class="bubble" style="width:80px;height:80px;top:60px;left:40px;border-color:#794199;animation-delay:.8s"></div>
+    <div class="bubble" style="width:40px;height:40px;bottom:80px;right:50px;border-color:#95CEA5;animation-delay:1.4s"></div>
+    <div class="bubble" style="width:24px;height:24px;top:140px;right:90px;border-color:#70B8E0;animation-delay:.3s"></div>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
+      <div class="hero-mascotes">
+        <!-- mascote verde -->
+        <svg class="mascote-hero" viewBox="0 0 100 100">
+          <rect x="30" y="10" width="12" height="12" rx="3" fill="#95CEA5"/>
+          <rect x="58" y="10" width="12" height="12" rx="3" fill="#95CEA5"/>
+          <rect x="20" y="22" width="60" height="56" rx="14" fill="#95CEA5"/>
+          <rect x="28" y="32" width="44" height="36" rx="8" fill="#2a1a35"/>
+          <rect x="36" y="40" width="10" height="16" rx="4" fill="#95CEA5"/>
+          <rect x="54" y="40" width="10" height="16" rx="4" fill="#95CEA5"/>
+          <rect x="44" y="58" width="12" height="8" rx="3" fill="#95CEA5"/>
+          <rect x="30" y="78" width="14" height="8" rx="3" fill="#95CEA5"/>
+          <rect x="56" y="78" width="14" height="8" rx="3" fill="#95CEA5"/>
+        </svg>
+        <!-- mascote roxo (maior) -->
+        <svg class="mascote-hero" style="width:130px;height:130px" viewBox="0 0 100 100">
+          <rect x="30" y="10" width="12" height="12" rx="3" fill="#794199"/>
+          <rect x="58" y="10" width="12" height="12" rx="3" fill="#794199"/>
+          <rect x="20" y="22" width="60" height="56" rx="14" fill="#794199"/>
+          <rect x="28" y="32" width="44" height="36" rx="8" fill="#2a1a35"/>
+          <rect x="36" y="40" width="10" height="16" rx="4" fill="#794199"/>
+          <rect x="54" y="40" width="10" height="16" rx="4" fill="#794199"/>
+          <rect x="44" y="58" width="12" height="8" rx="3" fill="#794199"/>
+          <rect x="30" y="78" width="14" height="8" rx="3" fill="#794199"/>
+          <rect x="56" y="78" width="14" height="8" rx="3" fill="#794199"/>
+        </svg>
+        <!-- mascote azul -->
+        <svg class="mascote-hero" viewBox="0 0 100 100">
+          <rect x="30" y="10" width="12" height="12" rx="3" fill="#70B8E0"/>
+          <rect x="58" y="10" width="12" height="12" rx="3" fill="#70B8E0"/>
+          <rect x="20" y="22" width="60" height="56" rx="14" fill="#70B8E0"/>
+          <rect x="28" y="32" width="44" height="36" rx="8" fill="#2a1a35"/>
+          <rect x="36" y="40" width="10" height="16" rx="4" fill="#70B8E0"/>
+          <rect x="54" y="40" width="10" height="16" rx="4" fill="#70B8E0"/>
+          <rect x="44" y="58" width="12" height="8" rx="3" fill="#70B8E0"/>
+          <rect x="30" y="78" width="14" height="8" rx="3" fill="#70B8E0"/>
+          <rect x="56" y="78" width="14" height="8" rx="3" fill="#70B8E0"/>
+        </svg>
+      </div>
+      <div style="background:white;border:2.5px solid #2a1a35;border-radius:50px;padding:8px 24px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;box-shadow:3px 3px 0 #2a1a35">
+        🦋 welcome to the club!
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="section-header">
+    <h2 class="section-title">categorias ✦</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <span class="cat-icon">🖼️</span>
+      <div class="cat-name">Posters & Arte</div>
+      <div class="cat-count">12 produtos</div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">👕</span>
+      <div class="cat-name">Roupas</div>
+      <div class="cat-count">8 produtos</div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">📔</span>
+      <div class="cat-name">Papelaria</div>
+      <div class="cat-count">15 produtos</div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-icon">🌟</span>
+      <div class="cat-name">Acessórios</div>
+      <div class="cat-count">10 produtos</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="section-header">
+    <h2 class="section-title">destaques 🦋</h2>
+    <div class="section-line"></div>
+    <a href="#" style="font-weight:800;font-size:13px;color:var(--purple);text-decoration:none;white-space:nowrap">ver todos →</a>
+  </div>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img" style="background:var(--blue-light)">
+        🖼️
+        <span class="product-badge">novo</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Poster Internet Baby</div>
+        <div class="product-price">R$ 35,00</div>
+      </div>
+      <div class="product-footer">
+        <span style="font-size:11px;color:#6b5c7a">A4 · impressão digital</span>
+        <button class="btn-add">+ add</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:var(--purple-light)">
+        📔
+        <span class="product-badge">fave</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Fanzine Vol. 1</div>
+        <div class="product-price">R$ 28,00</div>
+      </div>
+      <div class="product-footer">
+        <span style="font-size:11px;color:#6b5c7a">20 pág · colorido</span>
+        <button class="btn-add">+ add</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:var(--green-light)">
+        ☕
+      </div>
+      <div class="product-info">
+        <div class="product-name">Caneca Baby Club</div>
+        <div class="product-price">R$ 55,00</div>
+      </div>
+      <div class="product-footer">
+        <span style="font-size:11px;color:#6b5c7a">325ml · cerâmica</span>
+        <button class="btn-add">+ add</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER -->
+<section class="banner-y2k">
+  <div class="banner-text">
+    <h2>feito de fãs<br>para fãs 🦋</h2>
+    <p style="color:#d4b0e8;margin-bottom:20px">cada produto é criado com carinho e feito especialmente para quem ama música e cultura pop.</p>
+    <button class="btn-primary" style="background:var(--blue);color:var(--dark)">conhecer a loja →</button>
+  </div>
+  <div class="banner-mascotes" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+    <svg width="80" height="90" viewBox="0 0 100 110" class="mascote-banner">
+      <rect x="30" y="10" width="12" height="12" rx="3" fill="#95CEA5"/>
+      <rect x="58" y="10" width="12" height="12" rx="3" fill="#95CEA5"/>
+      <rect x="20" y="22" width="60" height="56" rx="14" fill="#95CEA5"/>
+      <rect x="28" y="32" width="44" height="36" rx="8" fill="#2a1a35"/>
+      <rect x="36" y="40" width="10" height="16" rx="4" fill="#95CEA5"/>
+      <rect x="54" y="40" width="10" height="16" rx="4" fill="#95CEA5"/>
+      <rect x="44" y="58" width="12" height="8" rx="3" fill="#95CEA5"/>
+      <rect x="30" y="78" width="14" height="8" rx="3" fill="#95CEA5"/>
+      <rect x="56" y="78" width="14" height="8" rx="3" fill="#95CEA5"/>
+    </svg>
+    <svg width="80" height="90" viewBox="0 0 100 110" class="mascote-banner" style="margin-top:16px">
+      <rect x="30" y="10" width="12" height="12" rx="3" fill="#70B8E0"/>
+      <rect x="58" y="10" width="12" height="12" rx="3" fill="#70B8E0"/>
+      <rect x="20" y="22" width="60" height="56" rx="14" fill="#70B8E0"/>
+      <rect x="28" y="32" width="44" height="36" rx="8" fill="#2a1a35"/>
+      <rect x="36" y="40" width="10" height="16" rx="4" fill="#70B8E0"/>
+      <rect x="54" y="40" width="10" height="16" rx="4" fill="#70B8E0"/>
+      <rect x="44" y="58" width="12" height="8" rx="3" fill="#70B8E0"/>
+      <rect x="30" y="78" width="14" height="8" rx="3" fill="#70B8E0"/>
+      <rect x="56" y="78" width="14" height="8" rx="3" fill="#70B8E0"/>
+    </svg>
+    <svg width="80" height="90" viewBox="0 0 100 110" class="mascote-banner">
+      <rect x="30" y="10" width="12" height="12" rx="3" fill="white" opacity=".85"/>
+      <rect x="58" y="10" width="12" height="12" rx="3" fill="white" opacity=".85"/>
+      <rect x="20" y="22" width="60" height="56" rx="14" fill="white" opacity=".85"/>
+      <rect x="28" y="32" width="44" height="36" rx="8" fill="#2a1a35"/>
+      <rect x="36" y="40" width="10" height="16" rx="4" fill="white" opacity=".85"/>
+      <rect x="54" y="40" width="10" height="16" rx="4" fill="white" opacity=".85"/>
+      <rect x="44" y="58" width="12" height="8" rx="3" fill="white" opacity=".85"/>
+      <rect x="30" y="78" width="14" height="8" rx="3" fill="white" opacity=".85"/>
+      <rect x="56" y="78" width="14" height="8" rx="3" fill="white" opacity=".85"/>
+    </svg>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">internet baby club</div>
+    <div class="footer-sub">fanmade with love ✦<br>produtos exclusivos para fãs</div>
+  </div>
+  <div class="footer-col">
+    <h4>loja</h4>
+    <a href="#">todos os produtos</a>
+    <a href="#">posters & arte</a>
+    <a href="#">roupas</a>
+    <a href="#">papelaria</a>
+    <a href="#">acessórios</a>
+  </div>
+  <div class="footer-col">
+    <h4>info</h4>
+    <a href="#">sobre nós</a>
+    <a href="#">contato</a>
+    <a href="#">envios</a>
+    <a href="#">faq</a>
+  </div>
+</footer>
+<div class="footer-bottom" style="background:#1e1228;color:#6a5a7a;padding:14px 40px;text-align:center;font-size:11px">
+  © 2026 internet baby club · feito com 🦋 · est. 2026
+</div>
