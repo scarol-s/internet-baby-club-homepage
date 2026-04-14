@@ -111,4 +111,4 @@ site: https://internet-baby-club-homepage.vercel.app/
 ## Desenvolvedora
 
 **Carolina Santos** — Design de Mídias Digitais · FATEC
-Responsável pelo desenvolvimento completo do site (identidade visual, front-end, back-end serverless, infraestrutura e documentação).
+Responsável pelo desenvolvimento completo do site.
